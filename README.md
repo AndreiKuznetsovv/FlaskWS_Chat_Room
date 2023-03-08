@@ -7,7 +7,14 @@
 ## General info
 Python live chat room using Flask & SocketIO
 
-## Functionality
+![Chat screenshot](./chatscreen.png?raw=true "Chat demo")
 
+## Functionality
+* Create chat room
+* Join chat room
+* Send messages
 
 ## Technologies
+* Flask
+* Flask-SocketIO
+* JS/CSS/HTML
