@@ -46,13 +46,14 @@ def home():
         if not name:
             return render_template('home.html',
                                    error="Please enter a name", code=code, name=name)
-        if join != False and not code:
-            return render_template('home.html',
-                                   error="Please enter a room code", code=code, name=name)
-        if code not in rooms:
-            return render_template('home.html',
-                                   error="Room does not exists", code=code, name=name)
-        # for case were create is equal to False
+        if join != False:
+            if not code:
+                return render_template('home.html',
+                                       error="Please enter a room code", code=code, name=name)
+            elif code not in rooms:
+                return render_template('home.html',
+                                       error="Room does not exists", code=code, name=name)
+
         room = code
         if create != False:
             room = generate_unique_code(4)
@@ -69,7 +70,11 @@ def home():
 
 @app.route('/room')
 def room():
-    render_template('room.html')
+    room = session.get('room')
+    # user can't directly go to the /room route, first he needs to visit /home
+    if room is None or session.get('name') is None or room not in rooms:
+        return redirect(url_for('home'))
+    return render_template('room.html')
 
 
 if __name__ == "__main__":
