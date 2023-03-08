@@ -10,11 +10,7 @@
         </button>
     </div>
 </div>
-<script type="text/javascript">
-    var socketio = io();
-
-    const sendMessage = () => {
-        console.log("send");
-    }
+<script type="text/javascript"
+        src="{{ url_for('static', filename='js/room.js') }}">
 </script>
 {% endblock %}
